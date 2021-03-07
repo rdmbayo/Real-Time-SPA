@@ -9,6 +9,13 @@ use App\User;
 
 class Question extends Model
 {
+   /*
+    public function getRouteKeyName()//Clé de recherche
+    {
+        return 'slug';
+    }
+*/
+protected $fillable = ['title','slug','body','user_id','category_id'];
 
     public function user()
     {
@@ -23,6 +30,10 @@ class Question extends Model
     public function replies()
     {
         return $this->hasMany(Reply::class);
+    }
+
+    public function getPathAttribute(){
+        return asset("api/question/$this->id");
     }
 
 }
