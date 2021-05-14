@@ -2,19 +2,21 @@
   <v-toolbar :dense="true" :flat="true" :color="'blue darken-4'" :dark="true">
       <v-toolbar-title>Nyembo Sa</v-toolbar-title>
 <v-spacer></v-spacer>
-  <v-toolbar-items>
+  <div class="hidden-sm-and-down">
     <v-btn text>Dashboard</v-btn>
     <v-btn text>Forum</v-btn>
     <v-btn text>Ask Question</v-btn>
     <v-btn text>Category</v-btn>
-  </v-toolbar-items>
+  </div>
 
    <v-spacer></v-spacer>
 
-  <v-toolbar-items>
-    <v-btn text>Username</v-btn>
+  <div>
+    <router-link to="/login">
+    <v-btn text>Login</v-btn>
+    </router-link>
     <v-btn text>Logout</v-btn>
-  </v-toolbar-items>
+  </div>
 </v-toolbar>
 
 </template>
