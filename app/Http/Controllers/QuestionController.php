@@ -10,6 +10,20 @@ use Symfony\Component\HttpFoundation\Response;
 
 class QuestionController extends Controller
 {
+
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+       // $this->middleware('auth:api', ['except' => ['login','signup']]);//car auth:api ne fournit pas plus d'explication
+       $this->middleware('jwt', ['except' => ['index','show']]);
+    }
+
+
+
     /**
      * Display a listing of the resource.
      *

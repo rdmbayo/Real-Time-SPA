@@ -6,10 +6,12 @@ use App\Model\Like;
 use App\Model\Question;
 use App\Model\Reply;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+//Tymon\JWTAuth\Providers\LaravelServiceProvider
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -47,10 +49,30 @@ class User extends Authenticatable
     {
         return $this->hasMany(Question::class);
     }
-    /*public function replies()
+    public function replies()
     {
         return $this->hasMany(Reply::class);
+
     }
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    public function setPasswordAttribute($value){
+        $this->attributes['password'] = bcrypt($value);
+    }
+    /*
     public function likes()
     {
         return $this->hasMany(Like::class);
