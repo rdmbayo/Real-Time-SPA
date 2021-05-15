@@ -51,13 +51,7 @@ data(){
 },
 methods: {
     login() {
-        axios.post('api/auth/login',this.form)
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-            console.error(err);
-        })
+       User.login(this.form);
     }
 }
 }

@@ -29,7 +29,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        if($token = $this->guard()->claims(['foo' => 'bar'])->attempt($credentials)){
+        if($token = $this->guard()->claims(['name' => 'nyembosa'])->attempt($credentials)){
        // if ($token = $this->guard()->attempt($credentials)) {
             return $this->respondWithToken($token);
         }
@@ -87,7 +87,8 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => $this->guard()->factory()->getTTL() * 60
+            'expires_in' => $this->guard()->factory()->getTTL() * 60,
+            'user' => auth()->user()->name
         ]);
     }
 

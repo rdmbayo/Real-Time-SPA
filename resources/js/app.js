@@ -13,8 +13,10 @@ import Vuetify from 'vuetify'
 import router from './Router/router.js'
 Vue.use(Vuetify)
 
+import User from './Helpers/User';
+window.User = User
 
-
+console.log(User.id())
 
 
 
